@@ -63,6 +63,13 @@ print(link.ltype)  # Outputs: 'Linked To'
 doc = link.document
 print(doc.name)   # Outputs: 'Cloud Controls Matrix'
 ```
+#### Link Types (ltype)
+
+`ltype` attribute in the `Link` class represents the type of relationship between the CRE and the linked document. Currently, there are two possible values for ltype:
+
+- **`Contains`**: This indicates that the CRE encompasses or includes the content or concepts of the linked document. For instance, a CRE about "Manual penetration testing" might contain another CRE about "Dynamic security testing".
+
+- **`Linked To`**: This signifies a reference or association to an external standard, tool, or another CRE. It's a way to show that the content or concepts in the CRE have a relation to the linked document. For example, a CRE might be linked to a specific section in the "NIST SSDF" standard.
 
 ### Change SDK settings
 
