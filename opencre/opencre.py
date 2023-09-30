@@ -12,15 +12,15 @@ class OpenCREConfig:
 
 class OpenCRE:
     def __init__(self):
-        self.settings = OpenCREConfig()
+        self.conf = OpenCREConfig()
 
-    def get_endpoint_url(self, endpoint_title):
-        host_url = self.settings.HOST_URL
-        api_prefix = self.settings.API_PREFIX
+    def get_endpoint_url(self, endpoint_title: str):
+        host_url = self.conf.HOST_URL
+        api_prefix = self.conf.API_PREFIX
         endpoint_url = f'{host_url}{api_prefix}{endpoint_title}'
         return endpoint_url
 
-    def perform_api_get_request(self, endpoint_title):
+    def perform_api_get_request(self, endpoint_title: str):
         endpoint_url = self.get_endpoint_url(endpoint_title=endpoint_title)
         response = requests.get(url=endpoint_url)
 
