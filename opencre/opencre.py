@@ -1,29 +1,22 @@
 import requests
 
+from dataclasses import dataclass
 from .models import CRE
+
+
+@dataclass
+class OpenCREConfig:
+    HOST_URL: str = "https://www.opencre.org/"
+    API_PREFIX: str = "rest/v1/"
 
 
 class OpenCRE:
     def __init__(self):
-        self.settings = {
-            "HOST_URL": "https://www.opencre.org/",
-            "API_PREFIX": "rest/v1/"
-        }
-
-    def change_settings(self, new_settings: dict) -> bool:
-        if not isinstance(new_settings, dict):
-            raise TypeError("Expected type dict")
-
-        for key in new_settings:
-            if self.settings.get(key) is None:
-                continue
-            self.settings[key] = new_settings[key]
-
-        return True
+        self.settings = OpenCREConfig()
 
     def get_endpoint_url(self, endpoint_title):
-        host_url = self.settings['HOST_URL']
-        api_prefix = self.settings['API_PREFIX']
+        host_url = self.settings.HOST_URL
+        api_prefix = self.settings.API_PREFIX
         endpoint_url = f'{host_url}{api_prefix}{endpoint_title}'
         return endpoint_url
 
@@ -34,13 +27,12 @@ class OpenCRE:
         if response.status_code == 404:
             return None
 
-        data = response.json().get("data")
-        return data
+        return response
 
     def root_cres(self) -> list[CRE]:
         endpoint_title = "root_cres"
-        root_cres_raw = self.perform_api_get_request(endpoint_title)
-        cres = [CRE(root_cre_raw) for root_cre_raw in root_cres_raw]
+        root_cres_response = self.perform_api_get_request(endpoint_title)
+        cres = CRE.parse_from_response(response=root_cres_response, many=True)
         return cres
 
     def cre(self, cre_id: str) -> CRE | None:
@@ -49,10 +41,10 @@ class OpenCRE:
         if not isinstance(cre_id, str):
             raise TypeError("Expected type str")
 
-        cre_raw = self.perform_api_get_request(endpoint_title)
+        cre_response = self.perform_api_get_request(endpoint_title)
 
-        if cre_raw is None:
-            return cre_raw
+        if cre_response is None:
+            return None
 
-        cre_instance = CRE(cre_raw)
-        return cre_instance
+        cre = CRE.parse_from_response(response=cre_response)
+        return cre
