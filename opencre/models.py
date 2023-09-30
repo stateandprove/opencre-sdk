@@ -104,4 +104,4 @@ class Tool(Document):
 class CRELink(Document):
     @property
     def id(self):
-        return self.raw["id"]
+        return self.raw.get("id")
