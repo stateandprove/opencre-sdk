@@ -67,20 +67,41 @@ print(doc.name)   # Outputs: 'Cloud Controls Matrix'
 
 `ltype` attribute in the `Link` class represents the type of relationship between the CRE and the linked document. Currently, there are two possible values for ltype:
 
-- **`Contains`**: This indicates that the CRE encompasses or includes the content or concepts of the linked document. For instance, a CRE about "Manual penetration testing" might contain another CRE about "Dynamic security testing".
+- **`Contains`**: This indicates that the CRE ncludes the content of the linked document. For instance, a CRE about "Manual penetration testing" might contain another CRE about "Dynamic security testing".
 
-- **`Linked To`**: This signifies a reference or association to an external standard, tool, or another CRE. It's a way to show that the content or concepts in the CRE have a relation to the linked document. For example, a CRE might be linked to a specific section in the "NIST SSDF" standard.
+- **`Linked To`**: This signifies a reference to an external standard, tool, or another CRE. For example, a CRE might be linked to a specific section in the "NIST SSDF" standard.
 
 ### Change SDK settings
 
+The OpenCRE SDK settings are encapsulated within the `OpenCREConfig` dataclass. This dataclass provides default values for the `HOST_URL` and `API_PREFIX`, but you can easily modify them as needed.
+
+1. View current settings:
+
 ```python
-# Update settings
-new_settings = {
-    "HOST_URL": "https://new-url.com/",
-    "API_PREFIX": "new-prefix/"
-}
-opencre.change_settings(new_settings)
+opencre.settings
+# Output: OpenCREConfig(HOST_URL='https://www.opencre.org/', API_PREFIX='rest/v1/')
 ```
+
+2. Access individual settings:
+
+```python
+opencre.settings.HOST_URL
+# Output: 'https://www.opencre.org/'
+
+opencre.settings.API_PREFIX
+# Output: 'rest/v1/'
+```
+
+3. Modify a setting:
+
+```python
+opencre.settings.API_PREFIX = 'rest/v5'
+opencre.settings.API_PREFIX
+# Output: 'rest/v5/'
+```
+
+> **Note:**
+Ensure that you modify the settings appropriately based on your requirements. Incorrect settings might lead to unexpected behavior or errors when interacting with the OpenCRE platform.
 
 ### Retrieve root CREs
 
