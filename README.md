@@ -12,7 +12,7 @@ In essence, the OpenCRE SDK is a gateway for developers to interact with and exp
 
 ### Requirements
 
-The OpenCRE SDK uses the requests library for HTTP communication with the OpenCRE platform. Ensure you've installed version 2.31.0, as detailed in `requirements.txt.`
+The OpenCRE SDK uses the requests library for HTTP communication with the OpenCRE platform. Ensure you've installed version 2.31.0, as detailed in `requirements.txt`.
 
 ## Installation
 
@@ -73,7 +73,7 @@ print(doc.name)   # Outputs: 'Cloud Controls Matrix'
 
 ### Change SDK settings
 
-The OpenCRE SDK settings are encapsulated within the `OpenCREConfig` dataclass. This dataclass provides default values for the `HOST_URL` and `API_PREFIX`, but you can easily modify them as needed.
+The OpenCRE SDK settings are encapsulated within the `OpenCREConfig` dataclass. This dataclass provides default values for the `HOST_URL` and `API_PREFIX`, but you can modify them as needed.
 
 1. View current settings:
 
@@ -100,8 +100,7 @@ opencre.settings.API_PREFIX
 # Output: 'rest/v5/'
 ```
 
-> **Note:**
-Ensure that you modify the settings appropriately based on your requirements. Incorrect settings might lead to unexpected behavior or errors when interacting with the OpenCRE platform.
+> :warning: **Warning:** Ensure that you modify the settings appropriately based on your requirements. Incorrect settings might lead to unexpected behavior or errors when interacting with the OpenCRE platform.
 
 ### Retrieve root CREs
 
@@ -126,4 +125,4 @@ If you encounter an error like `requests.exceptions.MissingSchema: Invalid URL`,
 
 ## Contributing
 
-We welcome contributions! Please submit pull requests for bug fixes, features, and improvements. Please see [**Contributing**](https://github.com/OWASP/OpenCRE/blob/main/CONTRIBUTING.md) for contributing instructions.
+We welcome contributions! Please submit pull requests for bug fixes, features, and improvements. See [**Contributing**](https://github.com/OWASP/OpenCRE/blob/main/CONTRIBUTING.md) for contributing instructions.
