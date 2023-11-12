@@ -1,6 +1,6 @@
 # OpenCRE SDK
 
-The OpenCRE SDK is a Python library that provides a convenient interface for interacting with the OpenCRE API. It includes classes for handling Common Requirements Enumeration (CRE) data, links, and associated documents.
+The OpenCRE SDK is a Python (3.11 and later) library that provides a convenient interface for interacting with the OpenCRE API. It includes classes for handling Common Requirements Enumeration (CRE) data, links, and associated documents.
 
 
 ## Installation
